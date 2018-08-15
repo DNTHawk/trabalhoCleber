@@ -18,3 +18,11 @@ Especialidade;
 5- Valor Nota: 4,0 pontos
 
 6- Prazo Entrega: 31/08 (Postar a URL do Projeto)
+
+Felipe ----
+
+Pasta View para o Site, e pasta System para o sistema.
+
+Cada pasta tem seu css e js, no CSS o uso do Sass fica opcional.
+
+Add Frameworks: Bootstrap, Jquery e Sass
