@@ -23,31 +23,29 @@
                         <h2>Login</h2>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <form action="login.php">
+                <form action="login.php" method="post">
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="matricula">Matricula:</label>
-                                <input type="text" name="matricula" class="form-control" require>
+                                <label for="matricula">Matricula: </label>
+                                <input class="form-control" type="text" name="matricula">
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <form action="login.php">
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="password">Senha:</label>
-                                <input type="password" name="password" class="form-control" require>
+                                <label for="password">Senha: </label>
+                                <input class="form-control" type="password" name="password">
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
