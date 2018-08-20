@@ -1,0 +1,78 @@
+.custom_nav_bar {
+  background-color: #1dad76;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+a {
+  color: #FFF;
+  text-decoration: none
+}
+
+.nav .open>a,
+.nav .open>a:focus,
+.nav .open>a:hover {
+    background-color: #FFF;
+    border-color: #337ab7;
+}
+
+.nav>li>a:focus,
+.nav>li>a:hover {
+    text-decoration: none;
+    background-color: #FFF;
+}
+
+.nav>li.disabled>a {
+  color: #777
+}
+
+.nav>li.disabled>a:focus,
+.nav>li.disabled>a:hover {
+  color: #777;
+  text-decoration: none;
+  cursor: not-allowed;
+  background-color: transparent
+}
+
+.text-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.centered {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.ma1 {
+  margin: 15px
+}
+
+.ms1 {
+  margin: 0px 10px
+}
+
+.mb1 {
+  margin-bottom: 10px
+} 
+
+.form_section {
+  border: solid 1px #CCC;
+  border-radius: 8px;
+  padding: 10px 25px;
+  margin-bottom: 15px
+}
+
+.to-right {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: end;
+  right: 0;
+}
+
+.pa1 {
+  padding: 25px;
+}
