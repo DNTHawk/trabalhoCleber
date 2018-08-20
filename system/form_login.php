@@ -23,7 +23,7 @@
                         <h2>Login</h2>
                     </div>
                 </div>
-                <form action="login.php" method="post">
+                <form action="./processa/login.php" method="post">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">

@@ -4,7 +4,7 @@ require_once 'conexao.php';
  
 if (!isLoggedIn())
 {
-    header('Location: form-login.php');
+    header('Location: ../form_login.php');
 }
 
 ?>
