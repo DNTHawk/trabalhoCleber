@@ -9,7 +9,7 @@ $password = isset($_POST['password']) ? $_POST['password'] : '';
 
 if (empty($matricula) || empty($password))
 {
-	echo"<script language='javascript' type='text/javascript'>alert('O campo login deve ser preenchido');window.location.href='form_login.php';</script>";
+	echo"<script language='javascript' type='text/javascript'>alert('O campo login deve ser preenchido');window.location.href='../form_login.php';</script>";
 	exit;
 }
 
@@ -30,7 +30,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (count($users) <= 0)
 {
-	echo"<script language='javascript' type='text/javascript'>alert('Matricula ou senha incorreta!');window.location.href='form_login.php';</script>";
+	echo"<script language='javascript' type='text/javascript'>alert('Matricula ou senha incorreta!');window.location.href='../form_login.php';</script>";
 	exit;
 }
 
@@ -44,6 +44,6 @@ $_SESSION['user_name'] = $user['nome'];
 $_SESSION['user_funcao'] = $user['funcaoPessoa'];
 $_SESSION['user_filial'] = $user['filial'];
 
-header('Location: index.php');
+header('Location: ../index.php');
 
 ?>
