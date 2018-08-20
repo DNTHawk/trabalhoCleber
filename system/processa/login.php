@@ -14,7 +14,7 @@ if (empty($matricula) || empty($password))
 }
 
 // cria o hash da senha
-$passwordHash = md5($password);
+$passwordHash = make_hash($password);
 
 $PDO = db_connect();
 

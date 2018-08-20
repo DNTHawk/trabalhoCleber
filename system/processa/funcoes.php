@@ -1,16 +1,14 @@
 <?php
  
 //Conecta com o MySQL usando PDO
-function db_connect()
-{
+function db_connect(){
     $PDO = new PDO('mysql:host=' . DB_HOST . ';port=3307;dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 
     return $PDO;
 }
  
 //Cria o hash da senha, usando MD5 e SHA-1
-function make_hash($str)
-{
+function make_hash($str){
     return sha1(md5($str));
 }
  
