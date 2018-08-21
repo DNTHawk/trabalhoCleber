@@ -95,15 +95,16 @@
         </form> 
 
         <form class="form-horizontal" method="POST" action="../processa/proc_cadastros.php" id="form_profissional">
+          <input type="hidden" name="op" value="2">
           <div class="form_section pa1">
             <div class="row mb1">
               <div class="col-sm-12 col-md-6">
-                <label for="inputEmail3">Nome</label>
+                <label for="nome">Nome</label>
                 <input type="text" class="form-control" name="nome" placeholder="Nome Completo">
               </div>
 
               <div class="col-sm-12 col-md-6">
-                <label for="inputEmail3">E-mail</label>
+                <label for="email">E-mail</label>
                 <input type="email" class="form-control" name="email" placeholder="E-mail">
               </div>
             </div>
@@ -111,12 +112,12 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-12 col-md-6">
-                  <label for="inputEmail3">Usuário</label>
+                  <label for="usuario">Usuário</label>
                   <input type="text" class="form-control" name="usuario" placeholder="Usuário">
                 </div>
 
                 <div class="col-sm-12 col-md-6">
-                  <label for="inputPassword3">Senha</label>
+                  <label for="senha">Senha</label>
                   <input type="password" class="form-control" name="senha" placeholder="Senha">
                 </div>
               </div>
@@ -125,7 +126,7 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-12 col-md-12">
-                  <label for="inputPassword3">Nivel de Acesso</label>
+                  <label for="nivel_de_acesso">Nivel de Acesso</label>
                   <select class="form-control" name="nivel_de_acesso">
                     <option value="1">Administrativo</option>
                     <option value="2">Usuário</option>
@@ -143,9 +144,10 @@
         </form>
 
         <form class="form-horizontal" method="POST" action="../processa/proc_cadastros.php" id="form_especialidades">
+          <input type="hidden" name="op" value="3">
           <div class="form_section pa1">
             <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Especialidade</label>
+              <label for="especialidade" class="col-sm-2 control-label">Especialidade</label>
               <div class="col-sm-12">
                 <input type="text" class="form-control" name="especialidade" placeholder="Especialidade">
               </div>
@@ -161,6 +163,8 @@
     </div>
   </div>
   <script src="../js/form_cadastro.js"></script>
+  <script src="../../lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>
 
 </html>
