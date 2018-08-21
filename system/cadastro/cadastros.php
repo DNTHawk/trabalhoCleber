@@ -26,14 +26,15 @@
       <h3 id="tipo_cadastro"></h3>
     </div>
     <div class="row">
-      <div class="col-md-12" id="formulario_cadastro">
-        <form class="form-horizontal" method="POST" action="../processa/proc_cad_usuario.php" id="form_centro_medico">
+      <div class="col-md-12" id="formulario_cadastro"> 
+        <form class="form-horizontal" method="POST" action="../processa/proc_cadastros.php" id="form_centro_medico">
+          <input type="hidden" name="op" value="1">
           <div class="form_section">
             <h4 class="text-center mb1">Informações básicas</h4>
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-10 col-md-12">
-                  <label for="inputEmail3">Nome</label>
+                  <label for="nome">Nome</label>
                   <input type="text" class="form-control" name="nome" placeholder="Nome Completo">
                 </div>
               </div>
@@ -42,12 +43,12 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-10 col-md-6">
-                  <label for="inputEmail3">CNPJ</label>
-                  <input type="email" class="form-control" name="cpnj1" placeholder="CNPJ">
+                  <label for="cnpj">CNPJ</label>
+                  <input type="text" class="form-control" name="cnpj" placeholder="CNPJ">
                 </div>
 
                 <div class="col-sm-10 col-md-6">
-                  <label for="inputEmail3">Nome Fantasia</label>
+                  <label for="nome_fantasia">Nome Fantasia</label>
                   <input type="text" class="form-control" name="nome_fantasia" placeholder="Nome Fantasia">
                 </div>
               </div>
@@ -58,29 +59,29 @@
             <h4 class="text-center ma1">Endereço</h4>
             <div class="form-group">
               <div class="row">
-                <label for="inputPassword3" class="col-sm-2 col-md-2 control-label">CEP</label>
+                <label for="cep" class="col-sm-2 col-md-2 control-label">CEP</label>
                 <div class="mb1 col-sm-10 col-md-12">
                   <input type="text" class="form-control" name="cep" placeholder="CEP">
                 </div>
               </div>
               <div class="row">
                 <div class="mb1 col-sm-10 col-md-6">
-                  <label for="inputPassword3">Rua</label>
-                  <input type="password" class="form-control" name="senha" placeholder="Rua">
+                  <label for="rua">Rua</label>
+                  <input type="text" class="form-control" name="rua" placeholder="Rua">
                 </div>
                 <div class="mb1 col-sm-10 col-md-6">
-                  <label for="inputPassword3">Número</label>
-                  <input type="password" class="form-control" name="senha" placeholder="Número">
+                  <label for="numero">Número</label>
+                  <input type="text" class="form-control" name="numero" placeholder="Número">
                 </div>
               </div>
               <div class="row">
                 <div class="mb1 col-sm-10 col-md-6">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Bairro</label>
-                  <input type="password" class="form-control" name="senha" placeholder="Bairro">
+                  <label for="bairro" class="col-sm-2 control-label">Bairro</label>
+                  <input type="text" class="form-control" name="bairro" placeholder="Bairro">
                 </div>
                 <div class="mb1 col-sm-10 col-md-6">
-                  <label for="inputPassword3" class="col-sm-1 control-label">Cidade</label>
-                  <input type="password" class="form-control" name="senha" placeholder="Cidade">
+                  <label for="cidade" class="col-sm-1 control-label">Cidade</label>
+                  <input type="text" class="form-control" name="cidade" placeholder="Cidade">
                 </div>
               </div>
             </div>
@@ -91,10 +92,9 @@
               <button type="submit" class="btn btn-success">Cadastrar</button>
             </div>
           </div>
-        </form>
+        </form> 
 
-
-        <form class="form-horizontal" method="POST" action="processa/proc_cad_usuario.php" id="form_profissional">
+        <form class="form-horizontal" method="POST" action="../processa/proc_cadastros.php" id="form_profissional">
           <div class="form_section pa1">
             <div class="row mb1">
               <div class="col-sm-12 col-md-6">
@@ -142,7 +142,7 @@
           </div>
         </form>
 
-        <form class="form-horizontal" method="POST" action="processa/proc_cad_usuario.php" id="form_especialidades">
+        <form class="form-horizontal" method="POST" action="../processa/proc_cadastros.php" id="form_especialidades">
           <div class="form_section pa1">
             <div class="form-group">
               <label for="inputEmail3" class="col-sm-2 control-label">Especialidade</label>
