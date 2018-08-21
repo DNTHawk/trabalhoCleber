@@ -1,5 +1,5 @@
-$primaryColor:#4682B4;
-$secondaryColor: #87CEEB;
+$primaryColor:#1dad76;
+$secondaryColor: #90EE90;
 
 .bg1, .bg2{
     width: 100%;
@@ -49,24 +49,6 @@ $secondaryColor: #87CEEB;
         color: #000;
     }
 }
-#logoHospital{
-    width: 150px;
-    height: 150px;
-    background-color: $primaryColor;
-    position: absolute;
-    top: 80px;
-    left: 120px;
-    border-radius: 25px;
-
-    p{
-        color: #FFF;
-        font-size: 130px;
-        margin-top: -25px;
-        margin-left: 25px;
-        font-weight: bold;
-    }
-}
-
 .custom_nav_bar {
   background-color: #1dad76;
   position: fixed;

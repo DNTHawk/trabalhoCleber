@@ -14,9 +14,6 @@
 <body>
   <div class="bg1"></div>
   <div class="bg2"></div>
-  <div id="logoHospital">
-    <p>H</p>
-  </div>
   <div class="container-fluid">
     <div id="form_login" class="row">
       <div id="box" class="col-md-4 offset-md-4">
@@ -29,8 +26,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label for="matricula">Matricula: </label>
-                <input class="form-control" type="text" name="matricula">
+                <label for="usuario">Usuário: </label>
+                <input class="form-control" type="text" name="usuario" require>
               </div>
             </div>
           </div>
@@ -38,7 +35,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="password">Senha: </label>
-                <input class="form-control" type="password" name="password">
+                <input class="form-control" type="password" name="password" require>
               </div>
             </div>
           </div>
