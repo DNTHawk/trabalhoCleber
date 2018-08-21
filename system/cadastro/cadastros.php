@@ -96,6 +96,54 @@
 
         <form class="form-horizontal" method="POST" action="processa/proc_cad_usuario.php" id="form_profissional">
           <div class="form_section pa1">
+            <div class="row mb1">
+              <div class="col-sm-12 col-md-6">
+                <label for="inputEmail3">Nome</label>
+                <input type="text" class="form-control" name="nome" placeholder="Nome Completo">
+              </div>
+
+              <div class="col-sm-12 col-md-6">
+                <label for="inputEmail3">E-mail</label>
+                <input type="email" class="form-control" name="email" placeholder="E-mail">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <label for="inputEmail3">Usuário</label>
+                  <input type="text" class="form-control" name="usuario" placeholder="Usuário">
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                  <label for="inputPassword3">Senha</label>
+                  <input type="password" class="form-control" name="senha" placeholder="Senha">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-12 col-md-12">
+                  <label for="inputPassword3">Nivel de Acesso</label>
+                  <select class="form-control" name="nivel_de_acesso">
+                    <option value="1">Administrativo</option>
+                    <option value="2">Usuário</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 to-right">
+              <button type="submit" class="btn btn-success">Cadastrar</button>
+            </div>
+          </div>
+        </form>
+
+        <form class="form-horizontal" method="POST" action="processa/proc_cad_usuario.php" id="form_especialidades">
+          <div class="form_section pa1">
             <div class="form-group">
               <label for="inputEmail3" class="col-sm-2 control-label">Nome</label>
               <div class="col-sm-12">
@@ -126,7 +174,7 @@
 
             <div class="form-group">
               <label for="inputPassword3" class="col-sm-2 control-label">Nivel de Acesso</label>
-              <div class="col-sm-12">
+              <div class="col-sm-10">
                 <select class="form-control" name="nivel_de_acesso">
                   <option value="1">Administrativo</option>
                   <option value="2">Usuário</option>
@@ -134,56 +182,10 @@
               </div>
             </div>
 
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10 to-right">
-              <button type="submit" class="btn btn-success">Cadastrar</button>
-            </div>
-          </div>
-        </form>
-
-        <form class="form-horizontal" method="POST" action="processa/proc_cad_usuario.php" id="form_especialidades">
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Nome</label>
-            <div class="col-sm-12">
-              <input type="text" class="form-control" name="nome" placeholder="Nome Completo">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">E-mail</label>
-            <div class="col-sm-12">
-              <input type="email" class="form-control" name="email" placeholder="E-mail">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Usuário</label>
-            <div class="col-sm-12">
-              <input type="text" class="form-control" name="usuario" placeholder="Usuário">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Senha</label>
-            <div class="col-sm-12">
-              <input type="password" class="form-control" name="senha" placeholder="Senha">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Nivel de Acesso</label>
-            <div class="col-sm-10">
-              <select class="form-control" name="nivel_de_acesso">
-                <option value="1">Administrativo</option>
-                <option value="2">Usuário</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-success">Cadastrar</button>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Cadastrar</button>
+              </div>
             </div>
           </div>
         </form>
