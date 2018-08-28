@@ -16,7 +16,7 @@ function cadCentroMedico(){
 
     global $nome, $cnpj, $nome_fantasia, $cep, $rua, $numero, $bairro, $cidade, $conexao;
 
-    $stmt = $conexao->prepare(" INSERT INTO centroMedico (nomeCM, cnpj, nomeFantasia, cep, rua, numero, bairro, cidade) 
+    $stmt = $conexao->prepare(" INSERT INTO centromedico (nomeCM, cnpj, nomeFantasia, cep, rua, numero, bairro, cidade) 
     VALUES ('$nome', '$cnpj', '$nome_fantasia', '$cep', '$rua', '$numero', '$bairro', '$cidade')");
 
     if ($stmt->execute()) {

@@ -4,7 +4,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'sisMedico');
+define('DB_NAME', 'sismedico');
  
 // Habilita todas as exibições de erros
 ini_set('display_errors', true);
