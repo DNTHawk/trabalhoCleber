@@ -16,9 +16,9 @@
     <div>
       <h3 class="text-center">Selecione o tipo de lista</h3><br/>
       <div class="centered">
-        <button class="ms1 btn btn-primary" onclick="seleciona_form('usuarios')">Usuários</button>
+        <button class="ms1 btn btn-primary" onclick="seleciona_form('profissionais')">Profissionais</button>
         <button class="ms1 btn btn-success" onclick="seleciona_form('centro_medico')">Centros Médicos</button>
-        <button class="ms1 btn btn-warning" onclick="seleciona_form('imagens')">Imagens</button>
+        <button class="ms1 btn btn-warning" onclick="seleciona_form('especialidade')">Especialidades</button>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
       <h3 id="tipo_lista"></h3>
     </div>
 
-    <div class="centered mt2" id="usuarios">
+    <div class="centered mt2" id="profissionais">
       <table class="table table-bordered">
         <tr>
           <th>Nome</th>
@@ -72,27 +72,29 @@
       </table>
     </div>
 
-    <div class="centered mt2" id="imagens">
-      <table class="table table-bordered">
-        <tr>
-          <th>Nome</th>
-          <th>Ações</th>
-        </tr>
-        <tr>
-          <td>João pé de mesa</td>
-          <td>
-            <button class="btn btn-warning">Editar</button>
-            <button class="btn btn-danger">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Maria</td>
-          <td>
-            <button class="btn btn-warning">Editar</button>
-            <button class="btn btn-danger">Excluir</button>
-          </td>
-        </tr>
-      </table>
+    <div class="centered mt2" id="especialidade">
+      <div class="card pa1">
+        <div class="row">
+          <div class="card-text col-md-9">
+            <h5>Nome da especialidade</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis cum non enim, doloremque obcaecati labore
+              a voluptatem, cumque similique quam, quibusdam repudiandae natus ratione quia quasi tempore ipsam laboriosam
+              maxime.
+            </p>
+          </div>
+          <div class="card-image col-md-3">
+            <img src="http://www.cesed.br/portal/wp-content/uploads/2014/08/Neurologia-600x320.jpg" alt="imagem" style="width: 100%">
+            <div class="mt1 centered">
+              <tr>
+                <td>
+                  <button class="btn btn-warning" style="margin-right: 10px">Editar</button>
+                  <button class="btn btn-danger">Excluir</button>
+                </td>
+              </tr>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
