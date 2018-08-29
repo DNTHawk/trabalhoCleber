@@ -118,6 +118,14 @@ a {
   margin-bottom: 10px;
 }
 
+.mt1 {
+  margin-top: 10px;
+}
+
+.mt2 {
+  margin-top: 20px;
+}
+
 .form_section {
   border: solid 1px #CCC;
   border-radius: 8px;
@@ -134,6 +142,10 @@ a {
 
 .pa1 {
   padding: 25px;
+}
+
+table tr th:nth-child(2) {
+  width: 170px
 }
 
 /*# sourceMappingURL=main.css.map */

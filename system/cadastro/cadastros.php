@@ -26,7 +26,7 @@
       <h3 id="tipo_cadastro"></h3>
     </div>
     <div class="row">
-      <div class="col-md-12" id="formulario_cadastro"> 
+      <div class="col-md-12" id="formulario_cadastro">
         <form class="form-horizontal" method="POST" action="../processa/proc_cadastros.php" id="form_centro_medico">
           <input type="hidden" name="op" value="1">
           <div class="form_section">
@@ -92,7 +92,7 @@
               <button type="submit" class="btn btn-success">Cadastrar</button>
             </div>
           </div>
-        </form> 
+        </form>
 
         <form class="form-horizontal" method="POST" action="../processa/proc_cadastros.php" id="form_profissional">
           <input type="hidden" name="op" value="2">
@@ -150,6 +150,12 @@
               <label for="especialidade" class="col-sm-2 control-label">Especialidade</label>
               <div class="col-sm-12">
                 <input type="text" class="form-control" name="especialidade" placeholder="Especialidade">
+                <textarea class="form-control mt1" name="especialidade" placeholder="Descrição"></textarea>
+                <label class="btn btn-primary mt1" for="my-file-selector">
+                  <input id="my-file-selector" type="file" style="display:none" onchange="$('#upload-file-info').html(this.files[0].name)">
+                  Selecionar imagem
+                </label>
+                <span class='label label-info' id="upload-file-info"></span>
               </div>
             </div>
             <div class="form-group">
