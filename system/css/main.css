@@ -97,13 +97,17 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: 10px;
 }
 
 .centered {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+#mgt{
+  margin-top: 80px;
 }
 
 .ma1 {

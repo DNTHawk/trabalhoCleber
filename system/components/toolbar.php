@@ -1,20 +1,23 @@
 <nav class="navbar navbar-expand-md custom_nav_bar fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#">Loja</a>
+    <a class="navbar-brand" href="#">Hospital Albert Einstein</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"><img src="../img/menu-button.png" alt=""></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuário</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="../cadastro/listar.php">Listar</a>
-            <a class="dropdown-item" href="../cadastro/cadastros.php">Cadastrar</a>
-            <a class="dropdown-item" href="../cadastro/nivel_acesso.php">Nivel de Acesso</a>
-            <a class="dropdown-item" href="#">Imagens</a>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link" href="../cadastro/cadastros.php" aria-haspopup="true" aria-expanded="false">Cadastros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../cadastro/listar.php" aria-haspopup="true" aria-expanded="false">Listar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../cadastro/nivel_acesso.php" aria-haspopup="true" aria-expanded="false">Nivel de Acesso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">Imagens Anuncio</a>
         </li>
       </ul>
     </div>

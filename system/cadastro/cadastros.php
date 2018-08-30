@@ -26,7 +26,7 @@ try {
   include("../components/toolbar.php");
   ?>
 
-  <div class="container">
+  <div id="mgt" class="container">
     <div>
       <h3 class="text-center">Selecione o tipo de cadastro</h3><br/>
       <div class="centered">
@@ -205,7 +205,7 @@ try {
           </div>
           <div class="row">
             <div class="col-md-12 to-right">
-<button id="btnCadEsp" type="submit" class="btn btn-success">Cadastrar</button>
+              <button id="btnCadEsp" type="submit" class="btn btn-success">Cadastrar</button>
             </div>
           </div>
           
