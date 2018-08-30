@@ -4,3 +4,61 @@
     position: absolute;
     color: red;
 }
+
+.navbar-green .navbar-brand {
+  color: #fff;
+}
+
+.navbar-green .navbar-brand:hover, .navbar-green .navbar-brand:focus {
+  color: #fff;
+}
+
+.navbar-green .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-green .navbar-nav .nav-link:hover, .navbar-green .navbar-nav .nav-link:focus {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.navbar-green .navbar-nav .nav-link.disabled {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.navbar-green .navbar-nav .show > .nav-link,
+.navbar-green .navbar-nav .active > .nav-link,
+.navbar-green .navbar-nav .nav-link.show,
+.navbar-green .navbar-nav .nav-link.active {
+  color: #fff;
+}
+
+.navbar-green .navbar-toggler {
+  color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-green .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-green .navbar-text {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-green .navbar-text a {
+  color: #fff;
+}
+
+.navbar-green .navbar-text a:hover, .navbar-green .navbar-text a:focus {
+  color: #fff;
+}
+
+.bg-green {
+  background-color: #1dad76 !important;
+}
+
+a.bg-green:hover, a.bg-green:focus,
+button.bg-green:hover,
+button.bg-green:focus {
+  background-color: #1dad76 !important;
+}
