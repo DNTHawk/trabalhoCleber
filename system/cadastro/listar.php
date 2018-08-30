@@ -20,6 +20,22 @@ try {
   <?php
   include("../components/bibliotecas.php");
   ?>
+  <script language="Javascript">
+    function confirmacaoDeleteEsp(id) {
+        var resposta = confirm("Deseja remover esse registro?");
+    
+        if (resposta == true) {
+              window.location.href = "../processa/excluirEspecialidade.php?espc_id="+id;
+        }
+    }
+    function confirmacaoDeleteCM(id) {
+        var resposta = confirm("Deseja remover esse registro?");
+    
+        if (resposta == true) {
+              window.location.href = "../processa/excluirCentroMedico.php?cm_id="+id;
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -100,8 +116,10 @@ try {
               ."</td><td>".$rs->numero
               ."</td><td>".$rs->bairro
               ."</td><td>".$rs->cidade
-              ."</td><td><center><button class='btn btn-warning'>Editar</button>
-              <button class='btn btn-danger'>Excluir</button></center></td>";
+              ."</td><td><center><a class='btn btn-warning' href=\"editarCentroMedico.php?cm_id=".$rs->idCM."\">Editar</a>";
+              ?>
+              <a href="javascript:func()" class="btn btn-danger" onclick="confirmacaoDeleteCM('<?php echo ($rs->idCM) ?>')">Excluir</a>
+              <?php
               echo "</tr>";
             }
           } else {
@@ -136,7 +154,7 @@ try {
                     <tr>
                       <td>
                         <?php echo "<a class='btn btn-warning'  href=\"editarEspecialidade.php?espc_id=".$rs->idEspecialidade."\">Editar</a>";?>
-                        <?php echo "<a class='btn btn-danger'  href=\"editarEspecialidade.php?espc_id=".$rs->idEspecialidade."\">Excluir</a>";?>
+                        <a href="javascript:func()" class="btn btn-danger" onclick="confirmacaoDeleteEsp('<?php echo ($rs->idEspecialidade) ?>')">Excluir</a>
                       </td>
                     </tr>
                   </div>

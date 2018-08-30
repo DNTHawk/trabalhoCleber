@@ -42,6 +42,7 @@ try {
       <div class="col-md-12" id="formulario_cadastro">
         <form class="form-horizontal" method="POST" action="../processa/proc_cadastros.php" id="form_centro_medico">
           <input type="hidden" name="op" value="1">
+          <input type="hidden" name="idCM" value="">
           <div class="form_section">
             <h4 class="text-center mb1">Informações básicas</h4>
             <div class="form-group">

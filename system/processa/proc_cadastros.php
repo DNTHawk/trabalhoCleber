@@ -60,19 +60,60 @@ function pegaDadosImagem(){
 function cadCentroMedico()
 {
 
-  global $nome, $cnpj, $nome_fantasia, $cep, $rua, $numero, $bairro, $cidade, $conexao;
+  global $nome, $cnpj, $nome_fantasia, $cep, $rua, $numero, $bairro, $cidade, $conexao, $idCM;
 
-  $stmt = $conexao->prepare(" INSERT INTO centromedico (nomeCM, cnpj, nomeFantasia, cep, rua, numero, bairro, cidade) 
-    VALUES ('$nome', '$cnpj', '$nome_fantasia', '$cep', '$rua', '$numero', '$bairro', '$cidade')");
+  try {
+    if ($idCM != "") {
 
-  if ($stmt->execute()) {
-    if ($stmt->rowCount() > 0) {
-      echo "<script language='javascript' type='text/javascript'>alert('Dados cadastrados com sucesso!');window.location.href='../cadastro/cadastros.php';</script>";
+      $stmt = $conexao->prepare("UPDATE centromedico  SET nomeCM=?, cnpj=?, nomeFantasia=?, cep=?, rua=?, numero=?, bairro=?, cidade=? WHERE idCM = ?");
+      $stmt->bindParam(9, $idCM);
+
+
+      $stmt->bindParam(1, $nome);
+      $stmt->bindParam(2, $cnpj);
+      $stmt->bindParam(3, $nome_fantasia);
+      $stmt->bindParam(4, $cep);
+      $stmt->bindParam(5, $rua);
+      $stmt->bindParam(6, $numero);
+      $stmt->bindParam(7, $bairro);
+      $stmt->bindParam(8, $cidade);
+
+      if ($stmt->execute()) {
+        if ($stmt->rowCount() > 0) {
+          echo"<script language='javascript' type='text/javascript'>alert('Dados cadastrado com sucesso!');window.location.href='../cadastro/listar.php';</script>";
+          $idCM = null;
+          $nomeCM = null;
+          $cnpj = null;
+          $nome_fantasia = null;
+          $cep = null;
+          $rua = null;
+          $numero = null;
+          $bairro = null;
+          $cidade = null;
+
+        } else {
+          echo "Erro ao tentar efetivar cadastro";
+        }
+      } else {
+        throw new PDOException("Erro: Não foi possível executar a declaração sql");
+      }
     } else {
-      echo "<script>alert('Erro ao efetivar o cadastro!')</script>";
+      $stmt = $conexao->prepare(" INSERT INTO centromedico (nomeCM, cnpj, nomeFantasia, cep, rua, numero, bairro, cidade) 
+          VALUES ('$nome', '$cnpj', '$nome_fantasia', '$cep', '$rua', '$numero', '$bairro', '$cidade')");
+
+        if ($stmt->execute()) {
+          if ($stmt->rowCount() > 0) {
+            echo "<script language='javascript' type='text/javascript'>alert('Dados cadastrados com sucesso!');window.location.href='../cadastro/cadastros.php';</script>";
+          } else {
+            echo "<script>alert('Erro ao efetivar o cadastro!')</script>";
+          }
+        } else {
+          throw new PDOException("Erro: Não foi possível executar a declaração sql");
+        }
     }
-  } else {
-    throw new PDOException("Erro: Não foi possível executar a declaração sql");
+
+  } catch (PDOException $erro) {
+    echo "Erro: ".$erro->getMessage();
   }
 
 }
@@ -175,6 +216,7 @@ function cadNivelAcesso()
 }
 switch ($op) {
   case '1': //Cadastro Centro Medico
+  $idCM = $_POST["idCM"];
   $nome = $_POST["nome"];
   $cnpj = $_POST["cnpj"];
   $nome_fantasia = $_POST["nome_fantasia"];
