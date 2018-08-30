@@ -181,6 +181,7 @@ try {
 
         <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="../processa/proc_cadastros.php" id="form_especialidades">
           <input type="hidden" name="op" value="3">
+          <input type="hidden" name="idEspecialidade" value="">
           <div class="form_section pa1">
             <div class="form-group">
               <label for="especialidade" class="col-sm-2 control-label">Especialidade</label>

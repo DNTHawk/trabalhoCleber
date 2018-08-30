@@ -1,3 +1,18 @@
+<?php 
+
+include("../processa/conexao.php");
+
+
+try {
+  $conexao = db_connect();
+  $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $conexao->exec("set names utf8");
+} catch (PDOException $erro) {
+  echo "Erro na conexão:" . $erro->getMessage();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,13 +32,16 @@
     <h3 class="text-center">Selecione o tipo de cadastro</h3><br/>
     <div class="row centered" style="margin-top: 60px">
       <div class="col-sm-10 col-md-10">
+        <form method="POST" action="../processa/proc_cadastros.php">
         <div class="form-group">
           <label for="nivelAcesso">Nivel de acesso</label>
           <input type="text" class="form-control" name="nivelAcesso" placeholder="Nível de Acesso do usuário" required>
         </div>
         <div class="col-sm-12 to-right">
+          <input type="hidden" name="op" value="4">
           <button type="submit" class="btn btn-success">Cadastrar</button>
         </div>
+        </form>
       </div>
     </div>
 
@@ -33,20 +51,24 @@
           <th>Nível Acesso</th>
           <th>Ações</th>
         </tr>
-        <tr>
-          <td>Administrador</td>
-          <td>
-            <button class="btn btn-warning">Editar</button>
-            <button class="btn btn-danger">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Usuário</td>
-          <td>
-            <button class="btn btn-warning">Editar</button>
-            <button class="btn btn-danger">Excluir</button>
-          </td>
-        </tr>
+        <?php 
+        try{
+          $stmt = $conexao->prepare("SELECT * FROM nivelacesso");
+          if ($stmt->execute()) {
+            while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+              echo "<tr>";
+              echo "<td>".$rs->nivelAcesso
+              ."</td><td><center><button class='btn btn-warning'>Editar</button>
+              <button class='btn btn-danger'>Excluir</button></center></td>";
+              echo "</tr>";
+            }
+          } else {
+            echo "Erro: Não foi possível recuperar os dados do banco de dados";
+          }
+        }catch (PDOException $erro) {
+          echo "Erro: ".$erro->getMessage();
+        }
+        ?>
       </table>
     </div>
 
