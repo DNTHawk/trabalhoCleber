@@ -1,3 +1,16 @@
+<?php 
+include("../processa/conexao.php");
+
+try {
+  $conexao = db_connect();
+  $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $conexao->exec("set names utf8");
+} catch (PDOException $erro) {
+  echo "Erro na conexão:" . $erro->getMessage();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,7 +138,30 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="col-sm-12 col-md-12">
+              <div class="col-sm-12 col-md-6">
+                  <div class="form-group">
+                        <label for="especialidade">Especialidade:</label>
+                            <?php
+                                $sql = "SELECT * from especialidade order by nomeEspecialidade asc";
+                                $stm = $conexao->prepare($sql);
+                                $stm->execute();
+                                $especialidades = $stm->fetchAll(PDO::FETCH_OBJ);
+                            ?>
+                        <select class="form-control" name="especialidade" id="especialidade" required>
+                        <?php 
+                            if (isset($especialidade) && $especialidade != null || $especialidade != ""){?> <option value="<?=$especialidade?>"><?=$nomeEspecialidade?></option> <?php
+                            }else{
+                            ?><option value="">Especialidade:</option><?php
+                            }
+                        ?>
+                        <?php foreach($especialidades as $especialidade):?>
+                            <option value=<?=$especialidade->idEspecialidade?>><?=$especialidade->nomeEspecialidade?></option>
+                        <?php endforeach;?>
+                        </select>
+                        <span class='msg-erro msg-status'></span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
                   <label for="nivel_de_acesso">Nivel de Acesso</label>
                   <select class="form-control" name="nivel_de_acesso">
                     <option value="1">Administrativo</option>
@@ -143,34 +179,68 @@
           </div>
         </form>
 
-        <form class="form-horizontal" method="POST" action="../processa/proc_cadastros.php" id="form_especialidades">
+        <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="../processa/proc_cadastros.php" id="form_especialidades">
           <input type="hidden" name="op" value="3">
           <div class="form_section pa1">
             <div class="form-group">
               <label for="especialidade" class="col-sm-2 control-label">Especialidade</label>
               <div class="col-sm-12">
-                <input type="text" class="form-control" name="especialidade" placeholder="Especialidade">
-                <textarea class="form-control mt1" name="especialidade" placeholder="Descrição"></textarea>
-                <label class="btn btn-primary mt1" for="my-file-selector">
-                  <input id="my-file-selector" type="file" style="display:none" onchange="$('#upload-file-info').html(this.files[0].name)">
-                  Selecionar imagem
-                </label>
-                <span class='label label-info' id="upload-file-info"></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-12 to-right">
-                <button type="submit" class="btn btn-success">Cadastrar</button>
+                <div class="row">
+                  <input type="text" class="form-control" name="especialidade" placeholder="Especialidade">
+                </div>
+                <div class="row">
+                  <textarea class="form-control mt1" name="descricao" placeholder="Descrição"></textarea>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <label for='selecao-arquivo'>Selecionar um arquivo</label>
+                    <input id='selecao-arquivo' type="file" name="foto">
+                  </div>
+                  <div class="col-md-4">
+                    <div id="image-holder" style=""></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-12 to-right">
+<button id="btnCadEsp" type="submit" class="btn btn-success">Cadastrar</button>
+            </div>
+          </div>
+          
         </form>
       </div>
     </div>
   </div>
-  <script src="../js/form_cadastro.js"></script>
+  
+
   <script src="../../lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+  $("#selecao-arquivo").on('change', function () {
+
+      if (typeof (FileReader) != "undefined") {
+
+        var image_holder = $("#image-holder");
+        image_holder.empty();
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $("<img />", {
+            "src": e.target.result,
+            "class": "thumb-image"
+          }).appendTo(image_holder);
+        }
+        image_holder.show();
+        reader.readAsDataURL($(this)[0].files[0]);
+      } else{
+        alert("Este navegador nao suporta FileReader.");
+      }
+    });
+  </script>
+  <script src="../js/form_cadastro.js"></script>
+  
 </body>
 
 </html>

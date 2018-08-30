@@ -1,3 +1,9 @@
+<?php 
+
+include("../processa/proc_listar.php");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,24 +34,34 @@
 
     <div class="centered mt2" id="profissionais">
       <table class="table table-bordered">
-        <tr>
-          <th>Nome</th>
-          <th>Ações</th>
-        </tr>
-        <tr>
-          <td>João pé de mesa</td>
-          <td>
-            <button class="btn btn-warning">Editar</button>
-            <button class="btn btn-danger">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Maria</td>
-          <td>
-            <button class="btn btn-warning">Editar</button>
-            <button class="btn btn-danger">Excluir</button>
-          </td>
-        </tr>
+      <tr>
+        <th>Nome</th>
+        <th>Especialidade</th>
+        <th>Email</th>
+        <th>Usuário</th>
+        <th>Ações</th>
+      </tr>
+        <?php 
+          try{
+            $stmt = $conexao->prepare("SELECT * FROM usuario, especialidade WHERE usuario.especialidade = especialidade.idEspecialidade");
+            if ($stmt->execute()) {
+              while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+                echo "<tr>";
+                echo "<td>".$rs->nome
+                ."</td><td>".$rs->nomeEspecialidade
+                ."</td><td>".$rs->email
+                ."</td><td>".$rs->usuario
+                ."</td><td><center><button class='btn btn-warning'>Editar</button>
+            <button class='btn btn-danger'>Excluir</button></center></td>";
+                echo "</tr>";
+              }
+            } else {
+              echo "Erro: Não foi possível recuperar os dados do banco de dados";
+            }
+          }catch (PDOException $erro) {
+            echo "Erro: ".$erro->getMessage();
+          }
+        ?>
       </table>
     </div>
 
