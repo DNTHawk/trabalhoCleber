@@ -2,7 +2,7 @@
  
 //Conecta com o MySQL usando PDO
 function db_connect(){
-    $PDO = new PDO('mysql:host=' . DB_HOST . ';port=3307;dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+    $PDO = new PDO('mysql:host=' . DB_HOST . ';port=3306;dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 
     return $PDO;
 }

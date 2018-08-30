@@ -17,7 +17,7 @@
           <a class="nav-link" href="../cadastro/nivel_acesso.php" aria-haspopup="true" aria-expanded="false">Nivel de Acesso</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">Imagens Anuncio</a>
+          <a class="nav-link" href="../cadastro/cadastro_anuncio.php" aria-haspopup="true" aria-expanded="false">Imagens Anúncio</a>
         </li>
         <li class="nav-item navbar-right">
           <a class="nav-link" href="../processa/logout.php" aria-haspopup="true" aria-expanded="false">Sair</a>
