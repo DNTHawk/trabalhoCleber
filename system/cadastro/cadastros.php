@@ -49,7 +49,7 @@ try {
               <div class="row">
                 <div class="col-sm-10 col-md-12">
                   <label for="nome">Nome</label>
-                  <input type="text" class="form-control" name="nome" placeholder="Nome Completo">
+                  <input type="text" class="form-control" name="nome" placeholder="Nome Completo" require>
                 </div>
               </div>
             </div>
@@ -58,12 +58,12 @@ try {
               <div class="row">
                 <div class="col-sm-10 col-md-6">
                   <label for="cnpj">CNPJ</label>
-                  <input type="text" class="form-control" name="cnpj" placeholder="CNPJ">
+                  <input type="text" class="form-control" name="cnpj" placeholder="CNPJ" require>
                 </div>
 
                 <div class="col-sm-10 col-md-6">
                   <label for="nome_fantasia">Nome Fantasia</label>
-                  <input type="text" class="form-control" name="nome_fantasia" placeholder="Nome Fantasia">
+                  <input type="text" class="form-control" name="nome_fantasia" placeholder="Nome Fantasia" require>
                 </div>
               </div>
             </div>
@@ -75,27 +75,27 @@ try {
               <div class="row">
                 <label for="cep" class="col-sm-2 col-md-2 control-label">CEP</label>
                 <div class="mb1 col-sm-10 col-md-12">
-                  <input type="text" class="form-control" name="cep" placeholder="CEP">
+                  <input type="text" class="form-control" name="cep" placeholder="CEP" require>
                 </div>
               </div>
               <div class="row">
                 <div class="mb1 col-sm-10 col-md-6">
                   <label for="rua">Rua</label>
-                  <input type="text" class="form-control" name="rua" placeholder="Rua">
+                  <input type="text" class="form-control" name="rua" placeholder="Rua" require>
                 </div>
                 <div class="mb1 col-sm-10 col-md-6">
                   <label for="numero">Número</label>
-                  <input type="text" class="form-control" name="numero" placeholder="Número">
+                  <input type="text" class="form-control" name="numero" placeholder="Número" require>
                 </div>
               </div>
               <div class="row">
                 <div class="mb1 col-sm-10 col-md-6">
                   <label for="bairro" class="col-sm-2 control-label">Bairro</label>
-                  <input type="text" class="form-control" name="bairro" placeholder="Bairro">
+                  <input type="text" class="form-control" name="bairro" placeholder="Bairro" require>
                 </div>
                 <div class="mb1 col-sm-10 col-md-6">
                   <label for="cidade" class="col-sm-1 control-label">Cidade</label>
-                  <input type="text" class="form-control" name="cidade" placeholder="Cidade">
+                  <input type="text" class="form-control" name="cidade" placeholder="Cidade" require>
                 </div>
               </div>
             </div>
@@ -114,12 +114,12 @@ try {
             <div class="row mb1">
               <div class="col-sm-12 col-md-6">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" name="nome" placeholder="Nome Completo">
+                <input type="text" class="form-control" name="nome" placeholder="Nome Completo" require>
               </div>
 
               <div class="col-sm-12 col-md-6">
                 <label for="email">E-mail</label>
-                <input type="email" class="form-control" name="email" placeholder="E-mail">
+                <input type="email" class="form-control" name="email" placeholder="E-mail" require>
               </div>
             </div>
 
@@ -127,12 +127,12 @@ try {
               <div class="row">
                 <div class="col-sm-12 col-md-6">
                   <label for="usuario">Usuário</label>
-                  <input type="text" class="form-control" name="usuario" placeholder="Usuário">
+                  <input type="text" class="form-control" name="usuario" placeholder="Usuário" require>
                 </div>
 
                 <div class="col-sm-12 col-md-6">
                   <label for="senha">Senha</label>
-                  <input type="password" class="form-control" name="senha" placeholder="Senha">
+                  <input type="password" class="form-control" name="senha" placeholder="Senha" require>
                 </div>
               </div>
             </div>
@@ -163,11 +163,27 @@ try {
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
-                  <label for="nivel_de_acesso">Nivel de Acesso</label>
-                  <select class="form-control" name="nivel_de_acesso">
-                    <option value="1">Administrativo</option>
-                    <option value="2">Usuário</option>
-                  </select>
+                  <div class="form-group">
+                        <label for="nivelAcesso">Nivel de Acesso:</label>
+                            <?php
+                                $sql = "SELECT * from nivelacesso order by nivelAcesso asc";
+                                $stm = $conexao->prepare($sql);
+                                $stm->execute();
+                                $nivelAcessos = $stm->fetchAll(PDO::FETCH_OBJ);
+                            ?>
+                        <select class="form-control" name="nivelAcesso" id="nivelAcesso" required>
+                        <?php 
+                            if (isset($nivelAcesso) && $nivelAcesso != null || $nivelAcesso != ""){?> <option value="<?=$nivelAcesso?>"><?=$nivelAcesso?></option> <?php
+                            }else{
+                            ?><option value="">Nivel Acesso:</option><?php
+                            }
+                        ?>
+                        <?php foreach($nivelAcessos as $nivelAcesso):?>
+                            <option value=<?=$nivelAcesso->idNivelAcesso?>><?=$nivelAcesso->nivelAcesso?></option>
+                        <?php endforeach;?>
+                        </select>
+                        <span class='msg-erro msg-status'></span>
+                    </div>
                 </div>
               </div>
             </div>
@@ -188,15 +204,15 @@ try {
               <label for="especialidade" class="col-sm-2 control-label">Especialidade</label>
               <div class="col-sm-12">
                 <div class="row">
-                  <input type="text" class="form-control" name="especialidade" placeholder="Especialidade">
+                  <input type="text" class="form-control" name="especialidade" placeholder="Especialidade" require>
                 </div>
                 <div class="row">
-                  <textarea class="form-control mt1" name="descricao" placeholder="Descrição"></textarea>
+                  <textarea class="form-control mt1" name="descricao" placeholder="Descrição" require></textarea>
                 </div>
                 <div class="row">
                   <div class="col-md-3">
                     <label for='selecao-arquivo'>Selecionar um arquivo</label>
-                    <input id='selecao-arquivo' type="file" name="foto">
+                    <input id='selecao-arquivo' type="file" name="foto" require>
                   </div>
                   <div class="col-md-4">
                     <div id="image-holder" style=""></div>

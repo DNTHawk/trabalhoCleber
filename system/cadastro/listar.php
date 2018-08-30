@@ -35,6 +35,13 @@ try {
               window.location.href = "../processa/excluirCentroMedico.php?cm_id="+id;
         }
     }
+    function confirmacaoDeleteProf(id) {
+        var resposta = confirm("Deseja remover esse registro?");
+    
+        if (resposta == true) {
+              window.location.href = "../processa/excluirProfissional.php?prof_id="+id;
+        }
+    }
     </script>
 </head>
 
@@ -75,8 +82,10 @@ try {
               ."</td><td>".$rs->nomeEspecialidade
               ."</td><td>".$rs->email
               ."</td><td>".$rs->usuario
-              ."</td><td><center><button class='btn btn-warning'>Editar</button>
-              <button class='btn btn-danger'>Excluir</button></center></td>";
+              ."</td><td><center><a class='btn btn-warning' href=\"editarProfissional.php?prof_id=".$rs->idUsuario."\">Editar</a>";
+              ?>
+              <a href="javascript:func()" class="btn btn-danger" onclick="confirmacaoDeleteProf('<?php echo ($rs->idUsuario) ?>')">Excluir</a>
+              <?php
               echo "</tr>";
             }
           } else {

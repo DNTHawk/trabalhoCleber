@@ -120,11 +120,43 @@ function cadCentroMedico()
 
 function cadProfissional()
 {
-  global $nome, $email, $usuario, $senha, $nivel_de_acesso, $conexao, $especialidade;
+  global $nome, $email, $usuario, $senha, $nivel_de_acesso, $conexao, $especialidade, $idUsuario;
 
   $passwordHash = make_hash($senha);
 
-  $stmt = $conexao->prepare(" INSERT INTO usuario (nome, especialidade, email, usuario, password, nivelacesso) 
+  try {
+    if ($idUsuario != "") {
+
+      $stmt = $conexao->prepare("UPDATE usuario  SET nome=?, especialidade=?, email=?, usuario=?, password=?, idNivelAcesso=? WHERE idUsuario = ?");
+      $stmt->bindParam(7, $idUsuario);
+
+      $stmt->bindParam(1, $nome);
+      $stmt->bindParam(2, $especialidade);
+      $stmt->bindParam(3, $email);
+      $stmt->bindParam(4, $usuario);
+      $stmt->bindParam(5, $passwordHash);
+      $stmt->bindParam(6, $nivel_de_acesso);
+
+      if ($stmt->execute()) {
+        if ($stmt->rowCount() > 0) {
+          echo"<script language='javascript' type='text/javascript'>alert('Dados cadastrado com sucesso!');window.location.href='../cadastro/listar.php';</script>";
+          $idUsuario = null;
+          $nome = null;
+          $especialidade = null;
+          $email = null;
+          $usuario = null;
+          $passwordHash = null;
+          $nivel_de_acesso = null;
+
+        } else {
+          echo "Erro ao tentar efetivar cadastro";
+        }
+      } else {
+        throw new PDOException("Erro: Não foi possível executar a declaração sql");
+      }
+    } else {
+      
+  $stmt = $conexao->prepare(" INSERT INTO usuario (nome, especialidade, email, usuario, password, idNivelAcesso) 
     VALUES ('$nome', '$especialidade' , '$email', '$usuario', '$passwordHash', '$nivel_de_acesso')");
 
   if ($stmt->execute()) {
@@ -136,6 +168,12 @@ function cadProfissional()
   } else {
     throw new PDOException("Erro: Não foi possível executar a declaração sql");
   }
+    }
+
+  } catch (PDOException $erro) {
+    echo "Erro: ".$erro->getMessage();
+  }
+
 
 }
 
@@ -229,12 +267,13 @@ switch ($op) {
   cadCentroMedico();
   break;
   case '2'://Cadastro Profissional
+  $idUsuario = $_POST["idUsuario"];
   $nome = $_POST["nome"];
   $especialidade = $_POST["especialidade"];
   $email = $_POST["email"];
   $usuario = $_POST["usuario"];
   $senha = $_POST["senha"];
-  $nivel_de_acesso = $_POST["nivel_de_acesso"];
+  $nivel_de_acesso = $_POST["nivelAcesso"];
 
   cadProfissional();
   break;

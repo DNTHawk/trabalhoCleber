@@ -17,7 +17,7 @@ try{
 
     try {
         $stmt = $conexao->prepare("SELECT * FROM centromedico WHERE idCM = $id");
-        $stmt->bindParam(1, $idFilial, PDO::PARAM_INT);
+        $stmt->bindParam(1, $idCM, PDO::PARAM_INT);
         if ($stmt->execute()) {
             $rs = $stmt->fetch(PDO::FETCH_OBJ);
             $idCM = $rs->idCM;
@@ -72,7 +72,7 @@ try{
               <div class="row">
                 <div class="col-sm-10 col-md-12">
                   <label for="nome">Nome</label>
-                  <input type="text" class="form-control" name="nome" value="<?php echo ($nomeCM) ?>">
+                  <input type="text" class="form-control" name="nome" value="<?php echo ($nomeCM) ?>" require>
                 </div>
               </div>
             </div>
@@ -81,12 +81,12 @@ try{
               <div class="row">
                 <div class="col-sm-10 col-md-6">
                   <label for="cnpj">CNPJ</label>
-                  <input type="text" class="form-control" name="cnpj" value="<?php echo ($cnpj) ?>">
+                  <input type="text" class="form-control" name="cnpj" value="<?php echo ($cnpj) ?>" require>
                 </div>
 
                 <div class="col-sm-10 col-md-6">
                   <label for="nome_fantasia">Nome Fantasia</label>
-                  <input type="text" class="form-control" name="nome_fantasia" value="<?php echo ($nomeFantasia) ?>">
+                  <input type="text" class="form-control" name="nome_fantasia" value="<?php echo ($nomeFantasia) ?>" require>
                 </div>
               </div>
             </div>
@@ -98,27 +98,27 @@ try{
               <div class="row">
                 <label for="cep" class="col-sm-2 col-md-2 control-label">CEP</label>
                 <div class="mb1 col-sm-10 col-md-12">
-                  <input type="text" class="form-control" name="cep" value="<?php echo ($cep) ?>">
+                  <input type="text" class="form-control" name="cep" value="<?php echo ($cep) ?>" require>
                 </div>
               </div>
               <div class="row">
                 <div class="mb1 col-sm-10 col-md-6">
                   <label for="rua">Rua</label>
-                  <input type="text" class="form-control" name="rua" value="<?php echo ($rua) ?>">
+                  <input type="text" class="form-control" name="rua" value="<?php echo ($rua) ?>" require>
                 </div>
                 <div class="mb1 col-sm-10 col-md-6">
                   <label for="numero">Número</label>
-                  <input type="text" class="form-control" name="numero" value="<?php echo ($numero) ?>">
+                  <input type="text" class="form-control" name="numero" value="<?php echo ($numero) ?>" require>
                 </div>
               </div>
               <div class="row">
                 <div class="mb1 col-sm-10 col-md-6">
                   <label for="bairro" class="col-sm-2 control-label">Bairro</label>
-                  <input type="text" class="form-control" name="bairro" value="<?php echo ($bairro) ?>">
+                  <input type="text" class="form-control" name="bairro" value="<?php echo ($bairro) ?>" require>
                 </div>
                 <div class="mb1 col-sm-10 col-md-6">
                   <label for="cidade" class="col-sm-1 control-label">Cidade</label>
-                  <input type="text" class="form-control" name="cidade" value="<?php echo ($cidade) ?>">
+                  <input type="text" class="form-control" name="cidade" value="<?php echo ($cidade) ?>" require>
                 </div>
               </div>
             </div>

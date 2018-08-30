@@ -17,7 +17,7 @@ try{
 
     try {
         $stmt = $conexao->prepare("SELECT * FROM especialidade WHERE idEspecialidade = $id");
-        $stmt->bindParam(1, $idFilial, PDO::PARAM_INT);
+        $stmt->bindParam(1, $idEspecialidade, PDO::PARAM_INT);
         if ($stmt->execute()) {
             $rs = $stmt->fetch(PDO::FETCH_OBJ);
             $idEspecialidade = $rs->idEspecialidade;
@@ -66,10 +66,10 @@ try{
               <label for="especialidade" class="col-sm-2 control-label">Especialidade</label>
               <div class="col-sm-12">
                 <div class="row">
-                  <input type="text" class="form-control" name="especialidade" placeholder="Especialidade" value="<?php echo ($nomeEspecialidade) ?>">
+                  <input type="text" class="form-control" name="especialidade" placeholder="Especialidade" value="<?php echo ($nomeEspecialidade) ?>" require>
                 </div>
                 <div class="row">
-                  <textarea class="form-control mt1" name="descricao" placeholder="Descrição"><?php echo ($descricao); ?></textarea>
+                  <textarea class="form-control mt1" name="descricao" placeholder="Descrição" require><?php echo ($descricao); ?></textarea>
                 </div>
                 <div class="row">
                   <div class="col-md-3">
