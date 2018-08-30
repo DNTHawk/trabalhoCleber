@@ -2,6 +2,9 @@
 
 include("../processa/conexao.php");
 
+session_start();
+require '../processa/verifica_sessao.php'; 
+
 try {
   $conexao = db_connect();
   $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -22,27 +25,27 @@ try {
   ?>
   <script language="Javascript">
     function confirmacaoDeleteEsp(id) {
-        var resposta = confirm("Deseja remover esse registro?");
-    
-        if (resposta == true) {
-              window.location.href = "../processa/excluirEspecialidade.php?espc_id="+id;
-        }
+      var resposta = confirm("Deseja remover esse registro?");
+      
+      if (resposta == true) {
+        window.location.href = "../processa/excluirEspecialidade.php?espc_id="+id;
+      }
     }
     function confirmacaoDeleteCM(id) {
-        var resposta = confirm("Deseja remover esse registro?");
-    
-        if (resposta == true) {
-              window.location.href = "../processa/excluirCentroMedico.php?cm_id="+id;
-        }
+      var resposta = confirm("Deseja remover esse registro?");
+      
+      if (resposta == true) {
+        window.location.href = "../processa/excluirCentroMedico.php?cm_id="+id;
+      }
     }
     function confirmacaoDeleteProf(id) {
-        var resposta = confirm("Deseja remover esse registro?");
-    
-        if (resposta == true) {
-              window.location.href = "../processa/excluirProfissional.php?prof_id="+id;
-        }
+      var resposta = confirm("Deseja remover esse registro?");
+      
+      if (resposta == true) {
+        window.location.href = "../processa/excluirProfissional.php?prof_id="+id;
+      }
     }
-    </script>
+  </script>
 </head>
 
 <body>
@@ -142,15 +145,15 @@ try {
     </div>
 
     <div class="centered mt2" id="especialidade">
-    <div class="card pa1">
-              <div class="row">
-      <?php 
-      try{
-        $stmt = $conexao->prepare("SELECT * FROM especialidade");
-        if ($stmt->execute()) {
-          while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
-            ?>
-             
+      <div class="card pa1">
+        <div class="row">
+          <?php 
+          try{
+            $stmt = $conexao->prepare("SELECT * FROM especialidade");
+            if ($stmt->execute()) {
+              while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+                ?>
+                
                 <div class="card-text col-md-9">
                   <h5><?php echo ($rs->nomeEspecialidade) ?></h5>
                   <p>
@@ -168,18 +171,18 @@ try {
                     </tr>
                   </div>
                 </div>
-              <hr>
-            <?php
+                <hr>
+                <?php
+              }
+            } else {
+              echo "Erro: Não foi possível recuperar os dados do banco de dados";
+            }
+          }catch (PDOException $erro) {
+            echo "Erro: ".$erro->getMessage();
           }
-        } else {
-          echo "Erro: Não foi possível recuperar os dados do banco de dados";
-        }
-      }catch (PDOException $erro) {
-        echo "Erro: ".$erro->getMessage();
-      }
-      ?>
+          ?>
+        </div>
       </div>
-            </div>
     </div>
   </div>
 

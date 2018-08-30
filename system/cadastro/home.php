@@ -1,3 +1,12 @@
+<?php 
+
+include("../processa/conexao.php");
+
+session_start();
+require '../processa/verifica_sessao.php'; 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +21,9 @@
   <?php
   include("../components/toolbar.php");
   ?>
+
+  <div class="bg1"></div>
+  <div class="bg2"></div>
 
   
   <script src="../js/form_cadastro.js"></script>

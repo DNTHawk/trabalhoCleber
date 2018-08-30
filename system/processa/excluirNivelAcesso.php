@@ -2,7 +2,7 @@
 
 include("../processa/conexao.php");
 
-$idCM = $_GET["cm_id"];
+$idNivelAcesso = $_GET["NA_id"];
 
 try {
   $conexao = db_connect();
@@ -13,11 +13,11 @@ try {
 }
 
 try {
-  $stmt = $conexao->prepare("DELETE FROM centromedico WHERE idCM = ?");
-  $stmt->bindParam(1, $idCM, PDO::PARAM_INT);
+  $stmt = $conexao->prepare("DELETE FROM nivelacesso WHERE idNivelAcesso = ?");
+  $stmt->bindParam(1, $idNivelAcesso, PDO::PARAM_INT);
   if ($stmt->execute()) {
-    echo"<script language='javascript' type='text/javascript'>alert('Registro foi excluido com sucesso!');window.location.href='../cadastro/listar.php';</script>";
-    $idCM = null;
+    echo"<script language='javascript' type='text/javascript'>alert('Registro foi excluido com sucesso!');window.location.href='../cadastro/nivel_acesso.php';</script>";
+    $idNivelAcesso = null;
   } else {
     throw new PDOException("Erro: Não foi possível executar a declaração sql");
   }

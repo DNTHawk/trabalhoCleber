@@ -19,6 +19,9 @@
         <li class="nav-item">
           <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">Imagens Anuncio</a>
         </li>
+        <li class="nav-item navbar-right">
+          <a class="nav-link" href="../processa/logout.php" aria-haspopup="true" aria-expanded="false">Sair</a>
+        </li>
       </ul>
     </div>
   </div>

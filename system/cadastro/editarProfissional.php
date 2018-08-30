@@ -1,6 +1,9 @@
 <?php 
 include("../processa/conexao.php");
 
+session_start();
+require '../processa/verifica_sessao.php'; 
+
 try {
   $conexao = db_connect();
   $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -11,29 +14,29 @@ try {
 
 try{
 
-    $id = $_GET["prof_id"];
-    settype($id, "integer");
+  $id = $_GET["prof_id"];
+  settype($id, "integer");
 
-    try {
-        $stmt = $conexao->prepare("SELECT * FROM usuario, nivelacesso, especialidade WHERE usuario.idNivelAcesso = nivelacesso.idNivelAcesso AND usuario.especialidade = especialidade.idEspecialidade AND idUsuario = $id");
-        $stmt->bindParam(1, $idUsuario, PDO::PARAM_INT);
-        if ($stmt->execute()) {
-            $rs = $stmt->fetch(PDO::FETCH_OBJ);
-            $idUsuario = $rs->idUsuario;
-            $nome = $rs->nome;
-            $especialidade = $rs->especialidade;
-            $email = $rs->email;
-            $usuario = $rs->usuario;
-            $password = $rs->password;
-            $idNivelAcesso = $rs->idNivelAcesso;
-            $nivelAcesso = $rs->nivelAcesso;
-            $nomeEspecialidade = $rs->nomeEspecialidade;
-        } else {
-            throw new PDOException("Erro: Não foi possível executar a declaração sql");
-        }
-    } catch (PDOException $erro) {
-        echo "Erro: ".$erro->getMessage();
+  try {
+    $stmt = $conexao->prepare("SELECT * FROM usuario, nivelacesso, especialidade WHERE usuario.idNivelAcesso = nivelacesso.idNivelAcesso AND usuario.especialidade = especialidade.idEspecialidade AND idUsuario = $id");
+    $stmt->bindParam(1, $idUsuario, PDO::PARAM_INT);
+    if ($stmt->execute()) {
+      $rs = $stmt->fetch(PDO::FETCH_OBJ);
+      $idUsuario = $rs->idUsuario;
+      $nome = $rs->nome;
+      $especialidade = $rs->especialidade;
+      $email = $rs->email;
+      $usuario = $rs->usuario;
+      $password = $rs->password;
+      $idNivelAcesso = $rs->idNivelAcesso;
+      $nivelAcesso = $rs->nivelAcesso;
+      $nomeEspecialidade = $rs->nomeEspecialidade;
+    } else {
+      throw new PDOException("Erro: Não foi possível executar a declaração sql");
     }
+  } catch (PDOException $erro) {
+    echo "Erro: ".$erro->getMessage();
+  }
 
 }catch (PDOException $erro) {
   echo "Erro na conexão:" . $erro->getMessage();
@@ -97,72 +100,72 @@ try{
 
             <div class="form-group">
               <div class="row">
-              <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-                        <label for="especialidade">Especialidade:</label>
-                            <?php
-                                $sql = "SELECT * from especialidade order by nomeEspecialidade asc";
-                                $stm = $conexao->prepare($sql);
-                                $stm->execute();
-                                $especialidades = $stm->fetchAll(PDO::FETCH_OBJ);
-                            ?>
-                        <select class="form-control" name="especialidade" id="especialidade" required>
-                        <?php 
-                            if (isset($especialidade) && $especialidade != null || $especialidade != ""){?> <option value="<?=$especialidade?>"><?=$nomeEspecialidade?></option> <?php
-                            }else{
-                            ?><option value="">Especialidade:</option><?php
-                            }
-                        ?>
-                        <?php foreach($especialidades as $especialidade):?>
-                            <option value=<?=$especialidade->idEspecialidade?>><?=$especialidade->nomeEspecialidade?></option>
-                        <?php endforeach;?>
-                        </select>
-                        <span class='msg-erro msg-status'></span>
-                    </div>
-                </div>
                 <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-                        <label for="nivelAcesso">Nivel de Acesso:</label>
-                            <?php
-                                $sql = "SELECT * from nivelacesso order by nivelAcesso asc";
-                                $stm = $conexao->prepare($sql);
-                                $stm->execute();
-                                $nivelAcessos = $stm->fetchAll(PDO::FETCH_OBJ);
-                            ?>
-                        <select class="form-control" name="nivelAcesso" id="nivelAcesso" required>
-                        <?php 
-                            if (isset($nivelAcesso) && $nivelAcesso != null || $nivelAcesso != ""){?> <option value="<?=$idNivelAcesso?>"><?=$nivelAcesso?></option> <?php
-                            }else{
-                            ?><option value="">Especialidade:</option><?php
-                            }
-                        ?>
-                        <?php foreach($nivelAcessos as $nivelAcesso):?>
-                            <option value=<?=$nivelAcesso->idNivelAcesso?>><?=$nivelAcesso->nivelAcesso?></option>
-                        <?php endforeach;?>
-                        </select>
-                        <span class='msg-erro msg-status'></span>
-                    </div>
+                  <div class="form-group">
+                    <label for="especialidade">Especialidade:</label>
+                    <?php
+                    $sql = "SELECT * from especialidade order by nomeEspecialidade asc";
+                    $stm = $conexao->prepare($sql);
+                    $stm->execute();
+                    $especialidades = $stm->fetchAll(PDO::FETCH_OBJ);
+                    ?>
+                    <select class="form-control" name="especialidade" id="especialidade" required>
+                      <?php 
+                      if (isset($especialidade) && $especialidade != null || $especialidade != ""){?> <option value="<?=$especialidade?>"><?=$nomeEspecialidade?></option> <?php
+                    }else{
+                      ?><option value="">Especialidade:</option><?php
+                    }
+                    ?>
+                    <?php foreach($especialidades as $especialidade):?>
+                      <option value=<?=$especialidade->idEspecialidade?>><?=$especialidade->nomeEspecialidade?></option>
+                    <?php endforeach;?>
+                  </select>
+                  <span class='msg-erro msg-status'></span>
                 </div>
               </div>
+              <div class="col-sm-12 col-md-6">
+                <div class="form-group">
+                  <label for="nivelAcesso">Nivel de Acesso:</label>
+                  <?php
+                  $sql = "SELECT * from nivelacesso order by nivelAcesso asc";
+                  $stm = $conexao->prepare($sql);
+                  $stm->execute();
+                  $nivelAcessos = $stm->fetchAll(PDO::FETCH_OBJ);
+                  ?>
+                  <select class="form-control" name="nivelAcesso" id="nivelAcesso" required>
+                    <?php 
+                    if (isset($nivelAcesso) && $nivelAcesso != null || $nivelAcesso != ""){?> <option value="<?=$idNivelAcesso?>"><?=$nivelAcesso?></option> <?php
+                  }else{
+                    ?><option value="">Especialidade:</option><?php
+                  }
+                  ?>
+                  <?php foreach($nivelAcessos as $nivelAcesso):?>
+                    <option value=<?=$nivelAcesso->idNivelAcesso?>><?=$nivelAcesso->nivelAcesso?></option>
+                  <?php endforeach;?>
+                </select>
+                <span class='msg-erro msg-status'></span>
+              </div>
             </div>
-
           </div>
-          <div class="form-group">
-            <div class="col-sm-12 to-right">
-              <button type="submit" class="btn btn-success">Cadastrar</button>
-            </div>
-          </div>
-        </form>
+        </div>
 
       </div>
-    </div>
-  </div>
-  
+      <div class="form-group">
+        <div class="col-sm-12 to-right">
+          <button type="submit" class="btn btn-success">Cadastrar</button>
+        </div>
+      </div>
+    </form>
 
-  <script src="../../lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="../js/form_cadastro.js"></script>
-  
+  </div>
+</div>
+</div>
+
+
+<script src="../../lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../js/form_cadastro.js"></script>
+
 </body>
 
 </html>

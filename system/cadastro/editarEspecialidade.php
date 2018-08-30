@@ -1,6 +1,9 @@
 <?php 
 include("../processa/conexao.php");
 
+session_start();
+require '../processa/verifica_sessao.php'; 
+
 try {
   $conexao = db_connect();
   $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -12,24 +15,24 @@ try {
 
 try{
 
-    $id = $_GET["espc_id"];
-    settype($id, "integer");
+  $id = $_GET["espc_id"];
+  settype($id, "integer");
 
-    try {
-        $stmt = $conexao->prepare("SELECT * FROM especialidade WHERE idEspecialidade = $id");
-        $stmt->bindParam(1, $idEspecialidade, PDO::PARAM_INT);
-        if ($stmt->execute()) {
-            $rs = $stmt->fetch(PDO::FETCH_OBJ);
-            $idEspecialidade = $rs->idEspecialidade;
-            $nomeEspecialidade = $rs->nomeEspecialidade;
-            $descricao = $rs->descricao;
-            $linkImagem = $rs->linkImagem;
-        } else {
-            throw new PDOException("Erro: Não foi possível executar a declaração sql");
-        }
-    } catch (PDOException $erro) {
-        echo "Erro: ".$erro->getMessage();
+  try {
+    $stmt = $conexao->prepare("SELECT * FROM especialidade WHERE idEspecialidade = $id");
+    $stmt->bindParam(1, $idEspecialidade, PDO::PARAM_INT);
+    if ($stmt->execute()) {
+      $rs = $stmt->fetch(PDO::FETCH_OBJ);
+      $idEspecialidade = $rs->idEspecialidade;
+      $nomeEspecialidade = $rs->nomeEspecialidade;
+      $descricao = $rs->descricao;
+      $linkImagem = $rs->linkImagem;
+    } else {
+      throw new PDOException("Erro: Não foi possível executar a declaração sql");
     }
+  } catch (PDOException $erro) {
+    echo "Erro: ".$erro->getMessage();
+  }
 
 }catch (PDOException $erro) {
   echo "Erro na conexão:" . $erro->getMessage();
@@ -98,7 +101,7 @@ try{
   <script src="../../lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script>
-  $("#selecao-arquivo").on('change', function () {
+    $("#selecao-arquivo").on('change', function () {
 
       if (typeof (FileReader) != "undefined") {
 

@@ -46,7 +46,7 @@ function pegaDadosImagem(){
           // Gera um nome único para a imagem
         $nome_imagem = md5(uniqid(time())) . "." . $ext[1];
 
-      return $nome_imagem;        
+        return $nome_imagem;        
 
       }
     }catch (PDOException $erro) {
@@ -99,17 +99,17 @@ function cadCentroMedico()
       }
     } else {
       $stmt = $conexao->prepare(" INSERT INTO centromedico (nomeCM, cnpj, nomeFantasia, cep, rua, numero, bairro, cidade) 
-          VALUES ('$nome', '$cnpj', '$nome_fantasia', '$cep', '$rua', '$numero', '$bairro', '$cidade')");
+        VALUES ('$nome', '$cnpj', '$nome_fantasia', '$cep', '$rua', '$numero', '$bairro', '$cidade')");
 
-        if ($stmt->execute()) {
-          if ($stmt->rowCount() > 0) {
-            echo "<script language='javascript' type='text/javascript'>alert('Dados cadastrados com sucesso!');window.location.href='../cadastro/cadastros.php';</script>";
-          } else {
-            echo "<script>alert('Erro ao efetivar o cadastro!')</script>";
-          }
+      if ($stmt->execute()) {
+        if ($stmt->rowCount() > 0) {
+          echo "<script language='javascript' type='text/javascript'>alert('Dados cadastrados com sucesso!');window.location.href='../cadastro/cadastros.php';</script>";
         } else {
-          throw new PDOException("Erro: Não foi possível executar a declaração sql");
+          echo "<script>alert('Erro ao efetivar o cadastro!')</script>";
         }
+      } else {
+        throw new PDOException("Erro: Não foi possível executar a declaração sql");
+      }
     }
 
   } catch (PDOException $erro) {
@@ -156,18 +156,18 @@ function cadProfissional()
       }
     } else {
       
-  $stmt = $conexao->prepare(" INSERT INTO usuario (nome, especialidade, email, usuario, password, idNivelAcesso) 
-    VALUES ('$nome', '$especialidade' , '$email', '$usuario', '$passwordHash', '$nivel_de_acesso')");
+      $stmt = $conexao->prepare(" INSERT INTO usuario (nome, especialidade, email, usuario, password, idNivelAcesso) 
+        VALUES ('$nome', '$especialidade' , '$email', '$usuario', '$passwordHash', '$nivel_de_acesso')");
 
-  if ($stmt->execute()) {
-    if ($stmt->rowCount() > 0) {
-      echo "<script language='javascript' type='text/javascript'>alert('Dados cadastrados com sucesso!');window.location.href='../cadastro/cadastros.php';</script>";
-    } else {
-      echo "<script>alert('Erro ao efetivar o cadastro!')</script>";
-    }
-  } else {
-    throw new PDOException("Erro: Não foi possível executar a declaração sql");
-  }
+      if ($stmt->execute()) {
+        if ($stmt->rowCount() > 0) {
+          echo "<script language='javascript' type='text/javascript'>alert('Dados cadastrados com sucesso!');window.location.href='../cadastro/cadastros.php';</script>";
+        } else {
+          echo "<script>alert('Erro ao efetivar o cadastro!')</script>";
+        }
+      } else {
+        throw new PDOException("Erro: Não foi possível executar a declaração sql");
+      }
     }
 
   } catch (PDOException $erro) {
@@ -237,19 +237,48 @@ function cadEspecialidade()
 
 function cadNivelAcesso()
 {
-  global $conexao, $nivelAcesso;
+  global $conexao, $nivelAcesso, $idNivelAcesso;
 
-  $stmt = $conexao->prepare(" INSERT INTO nivelacesso (nivelAcesso) VALUES ('$nivelAcesso')");
+  try {
+    if ($idNivelAcesso != "") {
 
-  if ($stmt->execute()) {
-    if ($stmt->rowCount() > 0) {
-      echo "<script language='javascript' type='text/javascript'>alert('Dados cadastrados com sucesso!');window.location.href='../cadastro/nivel_acesso.php';</script>";
+      $stmt = $conexao->prepare("UPDATE nivelacesso  SET nivelAcesso=? WHERE $idNivelAcesso = ?");
+      $stmt->bindParam(2, $idNivelAcesso);
+
+
+      $stmt->bindParam(1, $nivelAcesso);
+
+      if ($stmt->execute()) {
+        if ($stmt->rowCount() > 0) {
+          echo"<script language='javascript' type='text/javascript'>alert('Dados cadastrado com sucesso!');window.location.href='../cadastro/listar.php';</script>";
+          $idNivelAcesso = null;
+          $nivelAcesso = null;
+
+        } else {
+          echo "Erro ao tentar efetivar cadastro";
+        }
+      } else {
+        throw new PDOException("Erro: Não foi possível executar a declaração sql");
+      }
     } else {
-      echo "<script>alert('Erro ao efetivar o cadastro!')</script>";
+      $stmt = $conexao->prepare(" INSERT INTO nivelacesso (nivelAcesso) VALUES ('$nivelAcesso')");
+
+      if ($stmt->execute()) {
+        if ($stmt->rowCount() > 0) {
+          echo "<script language='javascript' type='text/javascript'>alert('Dados cadastrados com sucesso!');window.location.href='../cadastro/nivel_acesso.php';</script>";
+        } else {
+          echo "<script>alert('Erro ao efetivar o cadastro!')</script>";
+        }
+      } else {
+        throw new PDOException("Erro: Não foi possível executar a declaração sql");
+      }
     }
-  } else {
-    throw new PDOException("Erro: Não foi possível executar a declaração sql");
+
+  } catch (PDOException $erro) {
+    echo "Erro: ".$erro->getMessage();
   }
+
+  
 
 }
 switch ($op) {
@@ -288,6 +317,7 @@ switch ($op) {
   break;
 
   case '4':
+  $idNivelAcesso = $_POST["idNivelAcesso"];
   $nivelAcesso = $_POST["nivelAcesso"];
   cadNivelAcesso();
   break;

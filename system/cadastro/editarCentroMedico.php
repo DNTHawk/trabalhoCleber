@@ -1,6 +1,9 @@
 <?php 
 include("../processa/conexao.php");
 
+session_start();
+require '../processa/verifica_sessao.php'; 
+
 try {
   $conexao = db_connect();
   $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -12,29 +15,29 @@ try {
 
 try{
 
-    $id = $_GET["cm_id"];
-    settype($id, "integer");
+  $id = $_GET["cm_id"];
+  settype($id, "integer");
 
-    try {
-        $stmt = $conexao->prepare("SELECT * FROM centromedico WHERE idCM = $id");
-        $stmt->bindParam(1, $idCM, PDO::PARAM_INT);
-        if ($stmt->execute()) {
-            $rs = $stmt->fetch(PDO::FETCH_OBJ);
-            $idCM = $rs->idCM;
-            $nomeCM = $rs->nomeCM;
-            $cnpj = $rs->cnpj;
-            $nomeFantasia = $rs->nomeFantasia;
-            $cep = $rs->cep;
-            $rua = $rs->rua;
-            $numero = $rs->numero;
-            $bairro = $rs->bairro;
-            $cidade = $rs->cidade;
-        } else {
-            throw new PDOException("Erro: Não foi possível executar a declaração sql");
-        }
-    } catch (PDOException $erro) {
-        echo "Erro: ".$erro->getMessage();
+  try {
+    $stmt = $conexao->prepare("SELECT * FROM centromedico WHERE idCM = $id");
+    $stmt->bindParam(1, $idCM, PDO::PARAM_INT);
+    if ($stmt->execute()) {
+      $rs = $stmt->fetch(PDO::FETCH_OBJ);
+      $idCM = $rs->idCM;
+      $nomeCM = $rs->nomeCM;
+      $cnpj = $rs->cnpj;
+      $nomeFantasia = $rs->nomeFantasia;
+      $cep = $rs->cep;
+      $rua = $rs->rua;
+      $numero = $rs->numero;
+      $bairro = $rs->bairro;
+      $cidade = $rs->cidade;
+    } else {
+      throw new PDOException("Erro: Não foi possível executar a declaração sql");
     }
+  } catch (PDOException $erro) {
+    echo "Erro: ".$erro->getMessage();
+  }
 
 }catch (PDOException $erro) {
   echo "Erro na conexão:" . $erro->getMessage();

@@ -13,15 +13,15 @@ try {
 }
 
 try {
-    $stmt = $conexao->prepare("DELETE FROM usuario WHERE idUsuario = ?");
-    $stmt->bindParam(1, $idUsuario, PDO::PARAM_INT);
-    if ($stmt->execute()) {
-        echo"<script language='javascript' type='text/javascript'>alert('Registro foi excluido com sucesso!');window.location.href='../cadastro/listar.php';</script>";
-        $idUsuario = null;
-    } else {
-        throw new PDOException("Erro: Não foi possível executar a declaração sql");
-    }
+  $stmt = $conexao->prepare("DELETE FROM usuario WHERE idUsuario = ?");
+  $stmt->bindParam(1, $idUsuario, PDO::PARAM_INT);
+  if ($stmt->execute()) {
+    echo"<script language='javascript' type='text/javascript'>alert('Registro foi excluido com sucesso!');window.location.href='../cadastro/listar.php';</script>";
+    $idUsuario = null;
+  } else {
+    throw new PDOException("Erro: Não foi possível executar a declaração sql");
+  }
 } catch (PDOException $erro) {
-    echo "Erro: ".$erro->getMessage();
+  echo "Erro: ".$erro->getMessage();
 }
 ?>
