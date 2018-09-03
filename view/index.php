@@ -147,8 +147,16 @@ try {
               
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#esp">Especialidades</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Especialidades
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Dentista</a>
+              <a class="dropdown-item" href="#">Ortopedia</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Nerocirurgião</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#contato">Contato</a>
@@ -171,7 +179,7 @@ try {
     </ul>
     
     <!-- The slideshow -->
-    <div class="carousel-inner">
+    <div class="carousel-inner" id="home">
       <div class="carousel-item active">
         <img src="img/la.jpg" alt="Los Angeles" width="1100" height="500">
       </div>
@@ -191,8 +199,8 @@ try {
       <span class="carousel-control-next-icon"></span>
     </a>
   </div>
-
-  <div id="sobre" class="container">
+<span id="sobre"><br></br></span>
+  <div  class="container">
     <div class="row">
       <div class="col-sm-8">
         <h2 class="mt-4">Hospital Albert Einstein</h2>
@@ -204,11 +212,11 @@ try {
         gosta: inovar e crescer, sempre com excelência.</br></p>
       </div>
     </div> 
-    
+    <center id="text-esp">Especialidades</center>
     <div class="row">
       <?php 
       try{
-        $stmt = $conexao->prepare("SELECT * FROM especialidade");
+        $stmt = $conexao->prepare("SELECT * FROM especialidade LIMIT 3");
         if ($stmt->execute()) {
           while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
             ?>
