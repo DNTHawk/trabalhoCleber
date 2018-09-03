@@ -32,9 +32,7 @@ try {
   <link href="css/carousel.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
 
   <style>
   /* Make the image fully responsive */
@@ -131,7 +129,7 @@ try {
 <body>
   <nav class="navbar navbar-expand-lg .navbar-green bg-green fixed-top">
     <div class="container">
-      <a style="color: #FFF" class="navbar-brand" href="index.html"><span>Hospital Albert Einstein</span></a>
+      <a style="color: #FFF" class="navbar-brand" href="index.php"><span>Hospital Albert Einstein</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -143,19 +141,28 @@ try {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#sobre">Sobre
-              
-            </a>
+            <a class="nav-link" href="#sobre">Sobre</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Especialidades
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Dentista</a>
-              <a class="dropdown-item" href="#">Ortopedia</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Nerocirurgião</a>
+              <?php 
+              try{
+                $stmt = $conexao->prepare("SELECT * FROM especialidade");
+                if ($stmt->execute()) {
+                  while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+                    echo "<a class='dropdown-item' href=\"especialidades.php?espec_id=".$rs->idEspecialidade."\">".$rs->nomeEspecialidade."</a>";
+                  }
+                } else {
+                  echo "Erro: Não foi possível recuperar os dados do banco de dados";
+                }
+              }catch (PDOException $erro) {
+                echo "Erro: ".$erro->getMessage();
+              }
+              
+              ?>
             </div>
           </li>
           <li class="nav-item">
@@ -255,7 +262,9 @@ try {
                   <p class="card-text"><?php echo ($rs->descricao) ?></p>
                 </div>
                 <div class="card-footer">
-                  <a href="esp" class="btn btn-success">Descubra mais!</a>
+                  <?php
+                  echo "<a class='btn btn-success' href=\"especialidades.php?espec_id=".$rs->idEspecialidade."\">Descubra mais!</a>";
+                  ?>
                 </div>
               </div>
             </div>

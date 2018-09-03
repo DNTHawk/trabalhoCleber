@@ -156,8 +156,8 @@ try {
                     ?>
                     <select class="form-control" name="especialidade" id="especialidade" required>
                       <?php 
-                      if (isset($especialidade) && $especialidade != null || $especialidade != "") { ?> <option value="<?= $especialidade ?>"><?= $nomeEspecialidade ?></option> <?php}
-                      else {
+                      if (isset($especialidade) && $especialidade != null || $especialidade != "") { ?> <option value="<?= $especialidade ?>"><?= $nomeEspecialidade ?></option> <?php
+                      } else {
                     ?><option value="">Especialidade:</option><?php }
                     ?>
                     <?php foreach ($especialidades as $especialidade) : ?>
