@@ -281,6 +281,71 @@ function cadNivelAcesso()
   
 
 }
+
+function cadPaciente()
+{
+
+  global $conexao, $nomePaciente, $emailPaciente, $contatoPaciente, $cpfPaciente, $rgPaciente, $ruaPaciente, $bairroPaciente, $cidadePaciente, $estadoPaciente, $idPaciente;
+
+  try {
+    if ($idPaciente != "") {
+
+      $stmt = $conexao->prepare("UPDATE paciente  SET nomePaciente=?, emailPaciente=?, contatoPaciente=?, cpfPaciente=?, 
+      rgPaciente=?, ruaPaciente=?, bairroPaciente=?, cidadePaciente=?, estadoPaciente=? WHERE idPaciente = ?");
+      $stmt->bindParam(10, $idPaciente);
+
+
+      $stmt->bindParam(1, $nomePaciente);
+      $stmt->bindParam(2, $emailPaciente);
+      $stmt->bindParam(4, $contatoPaciente);
+      $stmt->bindParam(4, $cpfPaciente);
+      $stmt->bindParam(5, $rgPaciente);
+      $stmt->bindParam(6, $ruaPaciente);
+      $stmt->bindParam(7, $bairroPaciente);
+      $stmt->bindParam(8, $cidadePaciente);
+      $stmt->bindParam(9, $estadoPaciente);
+
+      if ($stmt->execute()) {
+        if ($stmt->rowCount() > 0) {
+          echo"<script language='javascript' type='text/javascript'>alert('Dados cadastrado com sucesso!');window.location.href='../cadastro/listar.php';</script>";
+          $idPaciente = null;
+          $nomePaciente = null;
+          $emailPaciente = null;
+          $contatoPaciente = null;
+          $cpfPaciente = null;
+          $rgPaciente = null;
+          $ruaPaciente = null;
+          $bairroPaciente = null;
+          $cidadePaciente = null;
+          $estadoPaciente = null;
+
+        } else {
+          echo "Erro ao tentar efetivar cadastro";
+        }
+      } else {
+        throw new PDOException("Erro: Não foi possível executar a declaração sql");
+      }
+    } else {
+      $stmt = $conexao->prepare(" INSERT INTO paciente (nomePaciente, emailPaciente, contatoPaciente, cpfPaciente, rgPaciente, ruaPaciente, bairroPaciente, cidadePaciente, estadoPaciente) 
+        VALUES ('$nomePaciente', '$emailPaciente', '$contatoPaciente', '$cpfPaciente', '$rgPaciente', '$ruaPaciente', '$bairroPaciente', '$cidadePaciente', '$estadoPaciente')");
+
+      if ($stmt->execute()) {
+        if ($stmt->rowCount() > 0) {
+          echo "<script language='javascript' type='text/javascript'>alert('Dados cadastrados com sucesso!');window.location.href='../cadastro/cadastros.php';</script>";
+        } else {
+          echo "<script>alert('Erro ao efetivar o cadastro!')</script>";
+        }
+      } else {
+        throw new PDOException("Erro: Não foi possível executar a declaração sql");
+      }
+    }
+
+  } catch (PDOException $erro) {
+    echo "Erro: ".$erro->getMessage();
+  }
+
+}
+
 switch ($op) {
   case '1': //Cadastro Centro Medico
   $idCM = $_POST["idCM"];
@@ -321,6 +386,22 @@ switch ($op) {
   $nivelAcesso = $_POST["nivelAcesso"];
   cadNivelAcesso();
   break;
+
+  case '5':
+  $idPaciente = $_POST["idPaciente"];
+  $nomePaciente = $_POST["nome"];
+  $emailPaciente = $_POST["email"];
+  $contatoPaciente = $_POST["num_contato"];
+  $cpfPaciente = $_POST["cpf"];
+  $rgPaciente = $_POST["rg"];
+  $ruaPaciente = $_POST["rua"];
+  $bairroPaciente = $_POST["bairro"];
+  $cidadePaciente = $_POST["cidade"];
+  $estadoPaciente = $_POST["estado"];
+
+  cadPaciente();
+  break;
+
 
   default:
         # code...

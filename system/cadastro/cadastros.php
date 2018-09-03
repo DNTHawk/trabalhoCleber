@@ -235,8 +235,8 @@ try {
     </form>
 
     <form class="form-horizontal mb1" method="POST" enctype="multipart/form-data" action="../processa/proc_cadastros.php" id="form_paciente">
-      <input type="hidden" name="op" value="3">
-      <input type="hidden" name="idEspecialidade" value="">
+      <input type="hidden" name="op" value="5">
+      <input type="hidden" name="idPaciente" value="">
       <div class="form_section pa1">
         <div class="form-group">
           <div class="col-sm-12">
