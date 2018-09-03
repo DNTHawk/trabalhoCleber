@@ -80,7 +80,7 @@ function cadCentroMedico()
 
       if ($stmt->execute()) {
         if ($stmt->rowCount() > 0) {
-          echo"<script language='javascript' type='text/javascript'>alert('Dados cadastrado com sucesso!');window.location.href='../cadastro/listar.php';</script>";
+          echo"<script language='javascript' type='text/javascript'>alert('Dados alterados com sucesso!');window.location.href='../cadastro/listar.php';</script>";
           $idCM = null;
           $nomeCM = null;
           $cnpj = null;
@@ -139,7 +139,7 @@ function cadProfissional()
 
       if ($stmt->execute()) {
         if ($stmt->rowCount() > 0) {
-          echo"<script language='javascript' type='text/javascript'>alert('Dados cadastrado com sucesso!');window.location.href='../cadastro/listar.php';</script>";
+          echo"<script language='javascript' type='text/javascript'>alert('Dados alterados com sucesso!');window.location.href='../cadastro/listar.php';</script>";
           $idUsuario = null;
           $nome = null;
           $especialidade = null;
@@ -200,7 +200,7 @@ function cadEspecialidade()
 
       if ($stmt->execute()) {
         if ($stmt->rowCount() > 0) {
-          echo"<script language='javascript' type='text/javascript'>alert('Dados cadastrado com sucesso!');window.location.href='../cadastro/listar.php';</script>";
+          echo"<script language='javascript' type='text/javascript'>alert('Dados alterados com sucesso!');window.location.href='../cadastro/listar.php';</script>";
           $idEspecialidade = null;
           $especialidade = null;
           $descricao = null;
@@ -250,7 +250,7 @@ function cadNivelAcesso()
 
       if ($stmt->execute()) {
         if ($stmt->rowCount() > 0) {
-          echo"<script language='javascript' type='text/javascript'>alert('Dados cadastrado com sucesso!');window.location.href='../cadastro/listar.php';</script>";
+          echo"<script language='javascript' type='text/javascript'>alert('Dados alterados com sucesso!');window.location.href='../cadastro/listar.php';</script>";
           $idNivelAcesso = null;
           $nivelAcesso = null;
 
@@ -297,7 +297,7 @@ function cadPaciente()
 
       $stmt->bindParam(1, $nomePaciente);
       $stmt->bindParam(2, $emailPaciente);
-      $stmt->bindParam(4, $contatoPaciente);
+      $stmt->bindParam(3, $contatoPaciente);
       $stmt->bindParam(4, $cpfPaciente);
       $stmt->bindParam(5, $rgPaciente);
       $stmt->bindParam(6, $ruaPaciente);
@@ -307,7 +307,7 @@ function cadPaciente()
 
       if ($stmt->execute()) {
         if ($stmt->rowCount() > 0) {
-          echo"<script language='javascript' type='text/javascript'>alert('Dados cadastrado com sucesso!');window.location.href='../cadastro/listar.php';</script>";
+          echo"<script language='javascript' type='text/javascript'>alert('Dados alterados com sucesso!');window.location.href='../cadastro/listar.php';</script>";
           $idPaciente = null;
           $nomePaciente = null;
           $emailPaciente = null;

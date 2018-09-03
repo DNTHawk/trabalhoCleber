@@ -69,7 +69,7 @@ try{
           <div class="col-sm-12 to-right">
             <input type="hidden" name="op" value="4">
             <input type="hidden" name="idNivelAcesso" value="<?php echo ($idNivelAcesso) ?>">
-            <button type="submit" class="btn btn-success">Cadastrar</button>
+            <button type="submit" class="btn btn-success">Alterar</button>
           </div>
         </form>
       </div>

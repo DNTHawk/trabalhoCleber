@@ -152,7 +152,7 @@ try{
       </div>
       <div class="form-group">
         <div class="col-sm-12 to-right">
-          <button type="submit" class="btn btn-success">Cadastrar</button>
+          <button type="submit" class="btn btn-success">Alterar</button>
         </div>
       </div>
     </form>

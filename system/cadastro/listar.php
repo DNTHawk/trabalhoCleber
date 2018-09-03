@@ -45,6 +45,13 @@ try {
         window.location.href = "../processa/excluirProfissional.php?prof_id="+id;
       }
     }
+    function confirmacaoDeletePaciente(id) {
+      var resposta = confirm("Deseja remover esse registro?");
+      
+      if (resposta == true) {
+        window.location.href = "../processa/excluirPaciente.php?paci_id="+id;
+      }
+    }
   </script>
 </head>
 
@@ -59,6 +66,7 @@ try {
         <button class="ms1 btn btn-primary" onclick="seleciona_form('profissionais')">Profissionais</button>
         <button class="ms1 btn btn-success" onclick="seleciona_form('centro_medico')">Centros Médicos</button>
         <button class="ms1 btn btn-warning" onclick="seleciona_form('especialidade')">Especialidades</button>
+        <button class="ms1 btn btn-info" onclick="seleciona_form('paciente')">Paciente</button>
       </div>
     </div>
 
@@ -184,6 +192,53 @@ try {
         </div>
       </div>
     </div>
+
+     <div class="centered mt2" id="paciente">
+      <table class="table table-bordered">
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Contato</th>
+          <th>CPF</th>
+          <th>RG</th>
+          <th>Rua</th>
+          <th>Bairro</th>
+          <th>Cidade</th>
+          <th>Estado</th>
+          <th>Ações</th>
+        </tr>
+        <?php 
+        try{
+          $stmt = $conexao->prepare("SELECT * FROM paciente");
+          if ($stmt->execute()) {
+            while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+              echo "<tr>";
+              echo "<td>".$rs->nomePaciente
+              ."</td><td>".$rs->emailPaciente
+              ."</td><td>".$rs->contatoPaciente
+              ."</td><td>".$rs->cpfPaciente
+              ."</td><td>".$rs->rgPaciente
+              ."</td><td>".$rs->ruaPaciente
+              ."</td><td>".$rs->bairroPaciente
+              ."</td><td>".$rs->cidadePaciente
+              ."</td><td>".$rs->estadoPaciente
+              ."</td><td><center><a class='btn btn-warning' href=\"editarPaciente.php?paci_id=".$rs->idPaciente."\">Editar</a>";
+              ?>
+              <a href="javascript:func()" class="btn btn-danger" onclick="confirmacaoDeletePaciente('<?php echo ($rs->idPaciente) ?>')">Excluir</a>
+              <?php
+              echo "</tr>";
+            }
+          } else {
+            echo "Erro: Não foi possível recuperar os dados do banco de dados";
+          }
+        }catch (PDOException $erro) {
+          echo "Erro: ".$erro->getMessage();
+        }
+        ?>
+      </table>
+    </div>
+
+    
   </div>
 
   <script src="../js/seleciona_lista.js"></script>

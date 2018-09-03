@@ -88,7 +88,7 @@ try{
           </div>
           <div class="row">
             <div class="col-md-12 to-right">
-              <button id="btnCadEsp" type="submit" class="btn btn-success">Cadastrar</button>
+              <button id="btnCadEsp" type="submit" class="btn btn-success">Alterar</button>
             </div>
           </div>
           
