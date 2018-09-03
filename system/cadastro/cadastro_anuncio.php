@@ -16,6 +16,8 @@
   <div id="mgt" class="container">
     <h3 class="centered mb1">Cadastro de anúncio</h3>
     <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="../processa/proc_anuncio.php" id="form_especialidades">
+      <input type="hidden" name="op" value="1">
+      <input type="hidden" name="idAnuncio" value="">
       <div class="form_section pa1">
         <div class="form-group">
           <label for='selecao-arquivo' class="centered">Selecionar um arquivo</label>
