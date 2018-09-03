@@ -180,15 +180,42 @@ try {
     
     <!-- The slideshow -->
     <div class="carousel-inner" id="home">
-      <div class="carousel-item active">
-        <img src="img/la.jpg" alt="Los Angeles" width="1100" height="500">
-      </div>
-      <div class="carousel-item">
-        <img src="img/chicago.jpg" alt="Chicago" width="1100" height="500">
-      </div>
-      <div class="carousel-item">
-        <img src="img/ny.jpg" alt="New York" width="1100" height="500">
-      </div>
+      <?php 
+        try{
+        $stmt = $conexao->prepare("SELECT * FROM anuncio LIMIT 1");
+        if ($stmt->execute()) {
+          while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+            ?>
+              <div class="carousel-item active">
+                <?php echo "<img width='1100' height='500' src='../system/cadastro/$rs->linkAnuncio'/>"; ?>
+              </div>
+            <?php
+          }
+        } else {
+          echo "Erro: Não foi possível recuperar os dados do banco de dados";
+        }
+      }catch (PDOException $erro) {
+        echo "Erro: ".$erro->getMessage();
+      }
+      ?>
+      <?php 
+        try{
+        $stmt = $conexao->prepare("SELECT * FROM anuncio LIMIT 1, 3");
+        if ($stmt->execute()) {
+          while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+            ?>
+              <div class="carousel-item">
+                <?php echo "<img width='1100' height='500' src='../system/cadastro/$rs->linkAnuncio'/>"; ?>
+              </div>
+            <?php
+          }
+        } else {
+          echo "Erro: Não foi possível recuperar os dados do banco de dados";
+        }
+      }catch (PDOException $erro) {
+        echo "Erro: ".$erro->getMessage();
+      }
+      ?>
     </div>
     
     <!-- Left and right controls -->
